@@ -1,0 +1,12 @@
+@mixin interactive($hover,$active,$time:200ms,$color:transparent){
+  transition: transform $time,color $time;
+  &:not(:disabled):hover {
+    transform: scale($active);
+    background: lighten($color, 5);
+  }
+
+  &:not(:disabled):active {
+    transform: scale($hover);
+    background: darken($color, 5);
+  }
+}

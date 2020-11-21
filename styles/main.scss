@@ -1,0 +1,47 @@
+@import "./styles/mixins";
+
+
+html {
+
+  font-size: 16px;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  font-family: Roboto, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0
+}
+
+html, body, #__nuxt, #__layout {
+  height: 100%;
+}
+
+
+.button {
+  padding: 0.5rem 1rem;
+  outline: none;
+  border: none;
+  background: #1c92f0;
+  color: #fcfcfc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 100ms;
+
+  @include interactive(0.95, 1.05, 200ms, #1c92f0);
+
+
+  &:disabled {
+    background: #e6e3e3;
+    color: black;
+  }
+
+}
