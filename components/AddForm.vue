@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { ADD_WORD } from '@/graphql/words'
+
 export default {
   data: () => ({
     word: '',
@@ -26,9 +28,13 @@ export default {
     },
     async addWord() {
       try {
-        const newWord = await this.$axios.$post(process.env.serverUrl + '/words', {
-          title: this.word, meaning:
-          this.meaning
+        const newWord = {
+          title: this.word,
+          meaning: this.meaning
+        }
+        await this.$apollo.mutate({
+          mutation: ADD_WORD,
+          variables: { ...newWord }
         })
         this.$store.commit('addWord', newWord)
       } catch (e) {

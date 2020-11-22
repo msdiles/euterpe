@@ -15,12 +15,13 @@
 import { mapState } from 'vuex'
 import Word from '~/components/Word'
 import AddForm from '~/components/AddForm'
+import { GET_WORDS } from '~/graphql/words'
 
 export default {
   components: { Word },
-  async asyncData({ $axios, store }) {
-    const words = await $axios.$get(`http://localhost:3000/words`)
-    store.commit('setWords', words)
+  async asyncData({ $axios, store, app }) {
+    const response = await app.apolloProvider.defaultClient.query({ query: GET_WORDS })
+    store.commit('setWords', response.data.words)
     return {}
   },
   data: () => ({
